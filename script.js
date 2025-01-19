@@ -2,15 +2,18 @@
 document.body.style.backgroundColor = "lightblue"; 
 var tup = [];
 var dis = [];
-var on_off = '';
+var on_off = 'pause';
 var action;
+var steam = 'nosteam'
 
 function myFunction(a) {
-    tup.push(a.toLowerCase());
-    dis.push(a);
-    alert(dis);
-    button.style.color = 'green';
-    document.body.appendChild(button);
+    if (on_off === 'pause'){
+        tup.push(a.toLowerCase());
+        dis.push(a);
+        alert(dis);
+        button.style.color = 'green';
+        document.body.appendChild(button);
+    }
 }
 
 let buttonCount = 0;
@@ -306,6 +309,42 @@ function createButtoneer() {
     document.body.appendChild(inactiveButton);
     }
 
+function createSteam(b) {
+        if (tup.length >= 5) {
+            return;
+        } else {
+            let button = document.createElement('button');
+            button.innerHTML = b;
+            button.style.padding = '30px 30px';
+            button.style.backgroundColor = 'white';
+            button.innerHTML = 'Steam On/Off';
+            button.style.fontSize='15px'
+            button.style.color = 'black';
+            button.style.border = 'none';
+            button.style.borderRadius = '5px';
+            button.style.cursor = 'pointer';
+            button.style.position = 'absolute';
+            button.style.top = "50px";
+            button.style.left = '1000px';
+            button.style.width = '150px';
+            button.style.overflow = 'hidden';
+            button.style.whiteSpace = 'nowrap';
+            button.style.textOverflow = 'period';
+            button.addEventListener('click', function () {
+                if (steam=="nosteam") {
+                    steam="steam"
+                    alert("Steam turned on")
+                }
+                else {
+                    steam="nosteam"
+                    alert("Steam turned off")
+                }
+            });
+            document.body.appendChild(button);
+        }
+    }
+    
+
 
 function button() {
     createInactiveButtons();
@@ -316,8 +355,7 @@ function button() {
     time();
     soap();
     createButtoneer();
+    createSteam();
 }
 
 button();
-
-
